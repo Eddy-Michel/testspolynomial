@@ -1,0 +1,30 @@
+je me suis basé sur ces explications de chatgpt :
+
+https://chatgpt.com/s/t_6ad7ca3e2c188191bf8ab8625695e222
+
+https://chatgpt.com/s/t_6ad7cb0343b08191ae2372839e5ef0c7
+
+
+N'oublons pas que l'équation polynomial puissance 5 par exemple : y = a*x^5 + b*x^4 + c*x^3 + d*x^2 + e*x^1 + f
+
+Les coefficients(a,b,c,d,e,f) sont générés suivant la loi normale
+
+Le nombre de coefficents de l'équation donne une idée sur la puissance de l'équation et dans numpy python,
+il faut utiliser : np.polynomial.polynomial.polyval()
+
+J'ai modifié le code, à la place de ceci : 
+
+y = self.a * x**self.puissance[i] + self.b + epsilon
+
+J'ai mis ceci : 
+
+# Coefficients aléatoires du polynôme
+coefficients = rng.normal(loc=0, scale=1, size=self.puissance[i]+1)
+
+# Polynôme de degré 4
+y1 = np.polynomial.polynomial.polyval(x, coefficients)
+
+# Ajout du bruit
+y = y1 + epsilon
+
+voici le code complet
